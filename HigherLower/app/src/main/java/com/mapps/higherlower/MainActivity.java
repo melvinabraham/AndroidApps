@@ -23,21 +23,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickTry(View view)  {
 
+        String message=null;
         EditText no_inp = (EditText) findViewById(R.id.number);
         Log.i("InputField: ",no_inp.getText().toString());
         int inp=Integer.parseInt(no_inp.getText().toString());
         if(inp==rno)
         {
-            Toast.makeText(getApplicationContext(), "Exactly Right!.", Toast.LENGTH_LONG).show();
+            message="Exactly Right!";
             Log.i("Match found for:  ",no_inp.toString());
 
         }
         if(inp>rno) {
-            Toast.makeText(getApplicationContext(), " Slightly Lower!.", Toast.LENGTH_LONG).show();
+            message="Lower!";
+
         }
         if(inp<rno) {
-            Toast.makeText(getApplicationContext(), " Slightly Higher!.", Toast.LENGTH_LONG).show();
+
+            message="Higher!";
+
         }
+
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
 

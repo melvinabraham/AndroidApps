@@ -11,33 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mapps.higherlower.MainActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/lessormore"
-        android:id="@+id/lessormore"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="284dp" />
-
-    <TextView
-        android:text="                                  Enter the number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/input" />
-
-    <Button
-        android:text="Try"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/number"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:id="@+id/b_inp"
-        android:onClick="onClickTry" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,18 +18,45 @@
         android:ems="10"
         android:layout_marginTop="23dp"
         android:id="@+id/number"
-        android:layout_below="@+id/input"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/input" />
 
     <Button
         android:text="New Random Number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/b_rand"
+        android:layout_marginTop="23dp"
+        android:onClick="onClickRandom"
         android:layout_below="@+id/b_inp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="13dp"
-        android:onClick="onClickRandom" />
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Try"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:id="@+id/b_inp"
+        android:onClick="onClickTry"
+        android:layout_below="@+id/number"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="I will choose a random number between 0-100.Try guessing it by entering it below."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/input"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/lessormore"
+        android:id="@+id/lessormore"
+        android:layout_above="@+id/input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp" />
 </RelativeLayout>
