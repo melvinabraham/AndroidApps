@@ -6,7 +6,7 @@ Working Model Ready.
 
 ## To Do:
 
-  ~~1. Come up with a logic to match the 'X' or '0'~~
+  	~~1. Come up with a logic to match the 'X' or '0'~~
   
 	2. Store the data in a database
 	
