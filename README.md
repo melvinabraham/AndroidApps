@@ -11,6 +11,7 @@ _My Experiments with **Android Studio**_
 
 	4. MediaPlayer: Simple Music Player with Play,Pause,Volume and Seek Functionalities
 
+	5. BasicPhrases: Basic Phrases in a foreign language(currently French)
 
 ## To Do
 
