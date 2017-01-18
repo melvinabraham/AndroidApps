@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.mapps.a_labb.MainActivity">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_marginTop="41dp"
+        android:id="@+id/b_pass"
+        android:layout_below="@+id/b_uname"
+        android:layout_alignLeft="@+id/b_uname"
+        android:layout_alignStart="@+id/b_uname" />
+
+    <TextView
+        android:text="Password:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/b_uname"
+        android:layout_alignRight="@+id/t_uname"
+        android:layout_alignEnd="@+id/t_uname"
+        android:layout_marginTop="19dp"
+        android:id="@+id/t_pass" />
+
+    <TextView
+        android:text="Date:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/b_pass"
+        android:layout_alignLeft="@+id/b_date"
+        android:layout_alignStart="@+id/b_date"
+        android:layout_marginTop="13dp"
+        android:id="@+id/t_date" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/b_uname"
+        android:layout_below="@+id/t_uname"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="UserName:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/t_uname"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/b_uname"
+        android:layout_alignStart="@+id/b_uname" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/b_date"
+        android:layout_below="@+id/t_date"
+        android:layout_alignLeft="@+id/b_pass"
+        android:layout_alignStart="@+id/b_pass" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/b_date"
+        android:layout_centerHorizontal="true">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/r_rdiogroup"
+            android:checkedButton="@+id/r_male">
+
+            <RadioButton
+                android:text="Male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/r_male"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="Female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/r_female"
+                android:layout_weight="1" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickButton" />
+
+    <CheckBox
+        android:text="Auto Upgrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c_auto"
+        android:layout_marginBottom="13dp"
+        android:layout_above="@+id/button2"
+        android:layout_alignLeft="@+id/t_pass"
+        android:layout_alignStart="@+id/t_pass" />
+
+
+</RelativeLayout>
