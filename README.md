@@ -13,6 +13,8 @@ _My Experiments with **Android Studio**_
 
 	5. BasicPhrases: Basic Phrases in a foreign language(currently French)
 
+	6. CountDown: Basic StopWatch (Incomplete)
+
 ## To Do
 
 	Listed in the specific apps.
