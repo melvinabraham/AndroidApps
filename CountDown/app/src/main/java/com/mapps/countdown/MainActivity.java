@@ -1,6 +1,7 @@
 package com.mapps.countdown;
 
 
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -19,77 +20,27 @@ import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    boolean counterIsActive = false;
     int minutes=0,seconds=0;
-
-
-    public void onClickTimer(View view)  {
-
-        final TextView myTime = (TextView) findViewById(R.id.t_time);
-        final SeekBar timeControl = (SeekBar) findViewById(R.id.seekTime);
-        new CountDownTimer(900000,100)  {
-
-            public void onTick(long millisecondsUntilDone)  {
-
-                seconds = seconds -1;
-                if(seconds<0)  {
-                    seconds=60+seconds;
-                    minutes=minutes-1;
-                }
-                timeControl.setProgress(seconds+minutes*60);
-                Log.i("Mins:Secs",Integer.toString(minutes)+Integer.toString(seconds));
-                timeControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                        minutes = (int) i / 60;
-                        seconds = i - minutes*60;
-                        myTime.setText(Integer.toString(minutes)+":"+ Integer.toString(seconds));
-
-                    }
-
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-
-                    }
-
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-
-                    }
-                });
-
-
-
-            }
-
-            public void onFinish()  {
-
-
-
-
-            }
-
-        }.start();
-
-
-    }
-
+    //SeekBar timeControl = (SeekBar) findViewById(R.id.seekTime);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SeekBar timeControl = (SeekBar) findViewById(R.id.seekTime);
-        final TextView myTime = (TextView) findViewById(R.id.t_time);
         timeControl.setMax(900);
+
         timeControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 
+                Log.i("Main timer: ",Integer.toString(seekBar.getProgress()));
                 //Update the value
-               minutes = (int) i / 60;
-               seconds = i - minutes*60;
-               myTime.setText(Integer.toString(minutes)+":"+ Integer.toString(seconds));
+                updateTimer(i);
 
             }
 
@@ -110,7 +61,60 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
+
+
+    public void updateTimer(int secondsLeft)    {
+
+        TextView myTime = (TextView) findViewById(R.id.t_time);
+        minutes = (int) (secondsLeft / 60);
+        seconds = secondsLeft - minutes*60;
+        String secondsString = Integer.toString(seconds);
+        if(seconds<=9)  {
+            secondsString = "0"+secondsString;
+        }
+        myTime.setText(Integer.toString(minutes)+":"+ secondsString);
+
+
+    }
+
+
+
+    public void onClickTimer(View view)  {
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.airhorn);
+        final SeekBar timeControl = (SeekBar) findViewById(R.id.seekTime);
+        final TextView myTime = (TextView) findViewById(R.id.t_time);
+        if (!counterIsActive) {
+
+            counterIsActive = true;
+            timeControl.setEnabled(false);
+
+            new CountDownTimer(timeControl.getProgress() * 1000, 1000) {
+                @Override
+                public void onTick(long l) {
+
+                    updateTimer((int) l / 1000);
+                    Log.i("seconds left",Integer.toString((int)l));
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                    myTime.setText("00:00");
+                    mp.start();
+                    Log.i("Done ", "Counter False");
+                    counterIsActive = false;
+                    timeControl.setEnabled(true);
+
+                }
+            }.start();
+
+
+        }
+    }
+
 }
 
 

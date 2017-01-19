@@ -26,7 +26,8 @@
         android:layout_marginBottom="116dp"
         android:id="@+id/b_go"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickTimer" />
 
     <ImageView
         android:layout_width="match_parent"
