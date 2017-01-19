@@ -21,8 +21,10 @@ import java.text.SimpleDateFormat;
 public class MainActivity extends AppCompatActivity {
 
 
+    Button controlButton;
     boolean counterIsActive = false;
     int minutes=0,seconds=0;
+    CountDownTimer countDownTimer;
     //SeekBar timeControl = (SeekBar) findViewById(R.id.seekTime);
 
     @Override
@@ -64,6 +66,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void resetTimer()   {
+
+        final SeekBar timeControl = (SeekBar) findViewById(R.id.seekTime);
+        final TextView myTime = (TextView) findViewById(R.id.t_time);
+        controlButton = (Button) findViewById(R.id.b_go);
+        myTime.setText("00:00");
+        timeControl.setProgress(0);
+        controlButton.setText("Go!");
+        countDownTimer.cancel();
+        counterIsActive = false;
+        timeControl.setEnabled(true);
+
+    }
+
 
     public void updateTimer(int secondsLeft)    {
 
@@ -82,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickTimer(View view)  {
+
+        controlButton = (Button) findViewById(R.id.b_go);
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.airhorn);
         final SeekBar timeControl = (SeekBar) findViewById(R.id.seekTime);
         final TextView myTime = (TextView) findViewById(R.id.t_time);
@@ -89,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
 
             counterIsActive = true;
             timeControl.setEnabled(false);
-
-            new CountDownTimer(timeControl.getProgress() * 1000, 1000) {
+            controlButton.setText("Stop");
+            countDownTimer = new CountDownTimer(timeControl.getProgress() * 1000, 1000) {
                 @Override
                 public void onTick(long l) {
 
@@ -102,18 +120,24 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onFinish() {
 
-                    myTime.setText("00:00");
+                    resetTimer();
                     mp.start();
                     Log.i("Done ", "Counter False");
-                    counterIsActive = false;
-                    timeControl.setEnabled(true);
 
                 }
             }.start();
 
 
         }
+       else    {
+
+
+            resetTimer();
+
+        }
     }
+
+
 
 }
 
