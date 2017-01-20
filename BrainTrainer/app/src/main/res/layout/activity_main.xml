@@ -24,13 +24,12 @@
         android:visibility="invisible" />
 
     <TextView
-        android:text="TextView"
+        android:text="30s"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="21dp"
         android:id="@+id/timertextView"
         android:textSize="36sp"
-        tools:text="30s"
         android:layout_width="wrap_content"
         android:background="@android:color/holo_blue_bright"
         android:padding="5dp" />
