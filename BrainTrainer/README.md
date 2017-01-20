@@ -4,4 +4,4 @@ Simple App to sharpen your brain. Set of questions are asked with options which 
 
 ## To Do
 
-	1. Build a working model
+	1. Work out for more test cases.

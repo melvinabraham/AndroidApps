@@ -15,7 +15,7 @@ _My Experiments with **Android Studio**_
 
 	6. CountDown: Basic StopWatch 
 
-	7. BrainTrainer: Simple app to sharpen your brain (incomplete)
+	7. BrainTrainer: Simple app to sharpen your brain
 
 ## To Do
 
