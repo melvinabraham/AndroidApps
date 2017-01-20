@@ -77,7 +77,8 @@
             android:tag="0"
             android:id="@+id/b1"
             android:background="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:onClick="onClickButton" />
         <Button
             android:text="3"
             android:layout_width="wrap_content"
@@ -90,7 +91,8 @@
             android:tag="1"
             android:id="@+id/b2"
             android:background="@color/colorPrimary"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:onClick="onClickButton" />
 
         <Button
             android:text="3"
@@ -104,7 +106,8 @@
             android:tag="2"
             android:id="@+id/b3"
             android:background="@android:color/holo_blue_light"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:onClick="onClickButton" />
 
         <Button
             android:text="3"
@@ -116,9 +119,10 @@
             android:layout_rowWeight="1"
             android:layout_gravity="fill"
             android:tag="3"
-            android:id="@+id/b3"
+            android:id="@+id/b4"
             android:background="@android:color/holo_orange_light"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:onClick="onClickButton" />
 
 
 
