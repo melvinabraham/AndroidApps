@@ -1,5 +1,6 @@
 package com.mapps.braintrainer;
 
+import android.graphics.Color;
 import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+          //        Updates the points on the textview
+
 
     public void updatePoints(int flag) {
 
@@ -52,10 +55,16 @@ public class MainActivity extends AppCompatActivity {
             den++;
         }
         else {
+
             den++;
         }
         pointTextView.setText(Integer.toString(num)+"/"+Integer.toString(den));
     }
+
+
+
+    //          Checks the tag returned by the button with the string values of answers
+
 
 
     public void checkAnswer(int a){
@@ -64,58 +73,47 @@ public class MainActivity extends AppCompatActivity {
         if (sum == answers.get(a)){
             correctTextView.setText("Correct!");
             correctFlag = 1;
+            correctTextView.setTextColor(Color.GREEN);
 
         }
         else{
             correctTextView.setText("Incorrect!");
             correctFlag = 0;
+            correctTextView.setTextColor(Color.RED);
+
         }
+        correctTextView.setVisibility(View.VISIBLE);
         updatePoints(correctFlag);
+        nextQuestion();
 
-
-    }
-
-
-    public int randomNumber()
-    {
-
-        return r.nextInt(100);
-
-    }
-
-    public void setNumbers(int a, int b)    {
-
-        sumTextView = (TextView) findViewById(R.id.sumTextView);
-        sumTextView.setText(Integer.toString(a)+"+"+Integer.toString(b));
-
-    }
-
-    public void onClickButton (View view)   {
-
-        clickedButtonString  =  (view.getTag().toString());
-        clickedButton = Integer.valueOf(clickedButtonString);
-        Log.i("Found button clicked: ", clickedButtonString);
-
-        checkAnswer(clickedButton);
 
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        startButton = (Button) findViewById(R.id.startButton);
-        correctTextView = (TextView) findViewById(R.id.correctTextView);
-        b1 = (Button) findViewById(R.id.b1);
-        b2 = (Button) findViewById(R.id.b2);
-        b3 = (Button) findViewById(R.id.b3);
-        b4 = (Button) findViewById(R.id.b4);
+    /*
+    public void resetPoints()   {
+
+        pointTextView = (TextView) findViewById(R.id.pointTextView);
+
+        num = 0;
+        den = 0;
+        points = null;
 
 
+    }
+    */
+
+
+        //          Next Question Funciton. Resets everythin including clearing the initial values in answers.
+
+
+    public void nextQuestion()  {
+
+        answers.clear();
         a= randomNumber();
         b= randomNumber();
         sum = a+b;    //Set this to the number on the button
+
         setNumbers(a,b);
 
         locationofAnswer = r.nextInt(4);        //Set answer at random location
@@ -140,7 +138,53 @@ public class MainActivity extends AppCompatActivity {
         b4.setText(Integer.toString(answers.get(3)));;
 
 
+    }
 
+    //      Returns the random integer for all of the buttons as well as the QUestion.
+
+
+    public int randomNumber()
+    {
+
+        return r.nextInt(100);
+
+    }
+
+    //      Sets the numbers to the Question
+
+    public void setNumbers(int a, int b)    {
+
+        sumTextView = (TextView) findViewById(R.id.sumTextView);
+        sumTextView.setText(Integer.toString(a)+"+"+Integer.toString(b));
+
+    }
+
+
+    //          Single Function which handles all of the buttons. buttons are identified by their tags.
+
+    public void onClickButton (View view)   {
+
+        clickedButtonString  =  (view.getTag().toString());
+        clickedButton = Integer.valueOf(clickedButtonString);
+        Log.i("Found button clicked: ", clickedButtonString);
+
+        checkAnswer(clickedButton);
+
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        startButton = (Button) findViewById(R.id.startButton);
+        correctTextView = (TextView) findViewById(R.id.correctTextView);
+        b1 = (Button) findViewById(R.id.b1);
+        b2 = (Button) findViewById(R.id.b2);
+        b3 = (Button) findViewById(R.id.b3);
+        b4 = (Button) findViewById(R.id.b4);
+        correctTextView.setVisibility(View.INVISIBLE);
+        nextQuestion();
 
 
     }
