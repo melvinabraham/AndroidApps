@@ -1,6 +1,7 @@
 package com.mapps.braintrainer;
 
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> answers = new ArrayList<Integer>();
     int num=0,den=0;
     String points [];
+    CountDownTimer countDownTimer;
+    TextView scoreTextView;
+    Button playAgain;
+
 
     public void Start(View view)    {
 
@@ -68,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void checkAnswer(int a){
+
 
         correctTextView = (TextView) findViewById(R.id.correctTextView);
         if (sum == answers.get(a)){
@@ -109,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void nextQuestion()  {
 
+
         answers.clear();
         a= randomNumber();
         b= randomNumber();
@@ -143,6 +151,30 @@ public class MainActivity extends AppCompatActivity {
     //      Returns the random integer for all of the buttons as well as the QUestion.
 
 
+    public void playAgain(View view){
+
+
+
+
+        scoreTextView.setVisibility(View.INVISIBLE);
+        playAgain = (Button) findViewById(R.id.b_playAgain);
+        playAgain.setVisibility(View.INVISIBLE);
+        correctTextView.setText("");
+        correctTextView.setVisibility(View.VISIBLE);
+        a=0;
+        b=0;
+        sum=0;
+
+
+
+
+        Log.i("Button Clicked","this");
+
+
+    }
+
+
+
     public int randomNumber()
     {
 
@@ -173,17 +205,53 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void countDownTimer()    {
+
+        timerTextView = (TextView) findViewById(R.id.timertextView);
+
+
+
+        countDownTimer = new CountDownTimer(3000,1000) {
+            @Override
+            public void onTick(long l) {
+
+                timerTextView.setText(Long.toString(l/1000));
+               // Log.i("Minus: ",Long.toString(l));
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                correctTextView.setVisibility(View.INVISIBLE);
+                scoreTextView.setVisibility(View.VISIBLE);
+                playAgain.setVisibility(View.VISIBLE);
+                scoreTextView.setText("Your score is "+pointTextView.getText().toString());
+
+
+            }
+        }.start();
+
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         startButton = (Button) findViewById(R.id.startButton);
+        playAgain = (Button) findViewById(R.id.b_playAgain);
+        scoreTextView = (TextView) findViewById(R.id.scoreTextView);
         correctTextView = (TextView) findViewById(R.id.correctTextView);
         b1 = (Button) findViewById(R.id.b1);
         b2 = (Button) findViewById(R.id.b2);
         b3 = (Button) findViewById(R.id.b3);
         b4 = (Button) findViewById(R.id.b4);
-        correctTextView.setVisibility(View.INVISIBLE);
+        correctTextView.setVisibility(View.VISIBLE);
+        playAgain.setVisibility(View.INVISIBLE);
+        scoreTextView.setVisibility(View.INVISIBLE);
+        correctTextView.setText("");
+        countDownTimer();
         nextQuestion();
 
 

@@ -149,5 +149,26 @@
         android:id="@+id/correctTextView"
         android:textSize="30sp"
         android:layout_below="@+id/startButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <TextView
+        android:text="Your score is "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scoreTextView"
+        android:textSize="18sp"
+        android:layout_alignBottom="@+id/correctTextView"
+        android:layout_alignLeft="@+id/correctTextView"
+        android:layout_alignStart="@+id/correctTextView"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:text="Play Again!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/b_playAgain"
+        android:layout_below="@+id/correctTextView"
+        android:layout_centerHorizontal="true"
+        android:onClick="playAgain" />
 </RelativeLayout>
