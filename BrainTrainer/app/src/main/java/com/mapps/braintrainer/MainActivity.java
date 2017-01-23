@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Interpolator;
 import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,9 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class MainActivity extends AppCompatActivity {
 
+    String timerText = null;
+    String pointsText=null;
+    String scoreText="0/0";
     int correctFlag = 1;
     String clickedButtonString=null;
     int clickedButton =0;
@@ -38,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     CountDownTimer countDownTimer;
     TextView scoreTextView;
     Button playAgain;
+    String correctText=null;
 
 
     public void Start(View view)    {
@@ -64,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
             den++;
         }
-        pointTextView.setText(Integer.toString(num)+"/"+Integer.toString(den));
+        pointsText = Integer.toString(num)+"/"+Integer.toString(den);
+        pointTextView.setText(pointsText);
     }
 
 
@@ -78,17 +85,19 @@ public class MainActivity extends AppCompatActivity {
 
         correctTextView = (TextView) findViewById(R.id.correctTextView);
         if (sum == answers.get(a)){
-            correctTextView.setText("Correct!");
+
+            correctText = "Correct!";
             correctFlag = 1;
             correctTextView.setTextColor(Color.GREEN);
 
         }
         else{
-            correctTextView.setText("Incorrect!");
+            correctText = "Incorrect!";
             correctFlag = 0;
             correctTextView.setTextColor(Color.RED);
 
         }
+        correctTextView.setText(correctText);
         correctTextView.setVisibility(View.VISIBLE);
         updatePoints(correctFlag);
         nextQuestion();
@@ -146,6 +155,11 @@ public class MainActivity extends AppCompatActivity {
         b4.setText(Integer.toString(answers.get(3)));;
 
 
+
+
+
+
+
     }
 
     //      Returns the random integer for all of the buttons as well as the QUestion.
@@ -153,17 +167,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void playAgain(View view){
 
+        countDownTimer.cancel();
 
+        b1.setEnabled(true);
+        b2.setEnabled(true);
+        b3.setEnabled(true);
+        b4.setEnabled(true);
 
-
+        correctText = null;
+        scoreText = null;
+        pointsText = "0/0";
+        num = 0;
+        den = 0;
         scoreTextView.setVisibility(View.INVISIBLE);
         playAgain = (Button) findViewById(R.id.b_playAgain);
         playAgain.setVisibility(View.INVISIBLE);
         correctTextView.setText("");
-        correctTextView.setVisibility(View.VISIBLE);
+        pointTextView.setText(pointsText);
         a=0;
         b=0;
         sum=0;
+        nextRound();
+
 
 
 
@@ -199,7 +224,6 @@ public class MainActivity extends AppCompatActivity {
         clickedButtonString  =  (view.getTag().toString());
         clickedButton = Integer.valueOf(clickedButtonString);
         Log.i("Found button clicked: ", clickedButtonString);
-
         checkAnswer(clickedButton);
 
 
@@ -207,26 +231,37 @@ public class MainActivity extends AppCompatActivity {
 
     public void countDownTimer()    {
 
+
         timerTextView = (TextView) findViewById(R.id.timertextView);
+        pointTextView = (TextView) findViewById(R.id.pointTextView);
 
 
-
-        countDownTimer = new CountDownTimer(3000,1000) {
+        countDownTimer = new CountDownTimer(10000,1000) {
             @Override
             public void onTick(long l) {
-
-                timerTextView.setText(Long.toString(l/1000));
-               // Log.i("Minus: ",Long.toString(l));
+    
+                timerText = (Long.toString(l/1000));
+                timerTextView.setText(timerText);
+               // Log.i("Minus: ",timerText);
 
             }
 
             @Override
             public void onFinish() {
 
+                scoreText = "            Your score is "+(pointTextView.getText()).toString();
+
+                b1.setEnabled(false);
+                b2.setEnabled(false);
+                b3.setEnabled(false);
+                b4.setEnabled(false);
+
                 correctTextView.setVisibility(View.INVISIBLE);
                 scoreTextView.setVisibility(View.VISIBLE);
                 playAgain.setVisibility(View.VISIBLE);
-                scoreTextView.setText("Your score is "+pointTextView.getText().toString());
+                scoreTextView.setText(scoreText);
+
+                Log.i("Crasheese:","here");
 
 
             }
@@ -235,10 +270,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void nextRound() {
+
+        num = 0;
+        den = 0;
+        nextQuestion();
+        countDownTimer();
+
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        scoreText = null;
         startButton = (Button) findViewById(R.id.startButton);
         playAgain = (Button) findViewById(R.id.b_playAgain);
         scoreTextView = (TextView) findViewById(R.id.scoreTextView);
@@ -251,8 +298,9 @@ public class MainActivity extends AppCompatActivity {
         playAgain.setVisibility(View.INVISIBLE);
         scoreTextView.setVisibility(View.INVISIBLE);
         correctTextView.setText("");
-        countDownTimer();
-        nextQuestion();
+
+            nextRound();
+
 
 
     }
