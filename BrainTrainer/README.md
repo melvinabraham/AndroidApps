@@ -4,4 +4,8 @@ Simple App to sharpen your brain. Set of questions are asked with options which 
 
 ## To Do
 
-	1. Work out for more test cases.
+	1.  Enable 'Go' button
+
+	2.  Better UI
+
+	3. Keep a log of points, which maybe displayed later.
