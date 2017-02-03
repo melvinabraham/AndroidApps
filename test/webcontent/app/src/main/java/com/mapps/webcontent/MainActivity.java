@@ -12,7 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
 
     public class DownloadTask extends AsyncTask<String,Void,String>  {
 
@@ -80,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
 
             e.printStackTrace();
         }
-        Log.i("Contents of URL:  ",result);
+
+        Log.i("Contents of URL:  ", result );
+
+
+
 
 
     }

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         if (!username.getText().toString().matches("[a-zA-Z]*") || username.getText().toString().length()==0)   {
 
             errflag=0;
-            errmessage="Please check username.";
+            errmessage="Please check username.";        
 
         }
 
