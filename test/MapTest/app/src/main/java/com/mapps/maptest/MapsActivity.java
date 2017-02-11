@@ -45,7 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);        //to change the terrain
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in Bangalore and move the camera
         LatLng bangalore = new LatLng(12.967231,77.6149603);
         mMap.addMarker(new MarkerOptions().position(bangalore).title("Marker in blore").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
