@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = this.getSharedPreferences("com.mapps.languagealert", Context.MODE_PRIVATE);
 
         if(!sharedPreferences.contains("language")) {
-                
+
             Alert();
         }
 
