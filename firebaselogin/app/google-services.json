@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "849655386092",
+    "firebase_url": "https://firelogin-d1c5d.firebaseio.com",
+    "project_id": "firelogin-d1c5d",
+    "storage_bucket": "firelogin-d1c5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849655386092:android:7ab1f6e9904b7db4",
+        "android_client_info": {
+          "package_name": "com.mapps.firebaselogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849655386092-rvehplij8lkl49tn9ut44r1kb0479qiv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJxpfoAcR8uv5ChxTwveV9TC4Op4SqFjw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
